@@ -40,6 +40,8 @@ function calculatePrice(
   var powerRequired = 3000; // Moc wymagana
   var power = modulePower * amountOfPanels; // Moc [W]
 
+  console.log("power: " + power);
+
   var powerReserve = powerRequired - power; // Zapas
 
   var powerKw = power / 1000; // Moc [kW]
