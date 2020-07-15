@@ -1,7 +1,9 @@
 // Declaring slide image for change of amount of panels
 
 var amountOfPanels = $("#Liczba-Paneli").val();
+console.log("amount of panels: " + amountOfPanels);
 amountOfPanels = parseInt(amountOfPanels);
+console.log("amount of panels 2: " + amountOfPanels);
 
 // Manual change of Amount of Panels Input
 $("#Liczba-Paneli").on("change", function() {
