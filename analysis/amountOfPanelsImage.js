@@ -1,4 +1,4 @@
-/* Declaring slide image for change of amount of panels */
+// Declaring slide image for change of amount of panels
 $("#montaz-wrap").hide();
 
 var amountOfPanels = $("#Liczba-Paneli").val();
