@@ -1,4 +1,5 @@
 /* This function is resposible for visible part of contract in app (it doesn't affect on exported contract anyway) */
+hideShowContractElements();
 function hideShowContractElements() {
   var Forma = $("input[name='Forma']:checked").val();
   if (Forma == "plan") {

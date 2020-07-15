@@ -1,4 +1,5 @@
 /* Function which is resposible for visual aspect of presentation */
+hideShowPresentationElements();
 function hideShowPresentationElements() {
   var EnergyGrowYesNo = $("input[name='EnergyGrowYesNo']:checked").val();
   if (EnergyGrowYesNo == 1) {
