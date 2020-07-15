@@ -10,27 +10,19 @@ $("#Liczba-Paneli").on("change", function() {
 // Click in button Plus
 $("#more-panels").on("click", function() {
   var amountOfPanels = $("#Liczba-Paneli").val();
-  console.log("amount of panels: " + amountOfPanels);
   amountOfPanels = parseInt(amountOfPanels);
-  console.log("amount of panels 2: " + amountOfPanels);
-  console.log("click");
-  console.log(amountOfPanels);
   if (amountOfPanels < 60) {
-    console.log("click2");
     $("#Liczba-Paneli").val(amountOfPanels + 2);
     clientSession.st_numberOfPanels = amountOfPanels;
     updateState(); // Firebase State Update
     imageAmountOfPanels(amountOfPanels);
-    console.log("click3");
   }
 });
 
 // Click in button Minus
 $("#less-panels").on("click", function() {
   var amountOfPanels = $("#Liczba-Paneli").val();
-  console.log("amount of panels: " + amountOfPanels);
   amountOfPanels = parseInt(amountOfPanels);
-  console.log("amount of panels 2: " + amountOfPanels);
   if (amountOfPanels > 10) {
     $("#Liczba-Paneli").val(amountOfPanels - 2);
     clientSession.st_numberOfPanels = amountOfPanels;
