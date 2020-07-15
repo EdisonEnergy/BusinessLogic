@@ -11,6 +11,7 @@ $("#Liczba-Paneli").on("change", function() {
 // Click in button Plus
 $("#more-panels").on("click", function() {
   console.log("click");
+  console.log(amountOfPanels);
   if (amountOfPanels < 60) {
     console.log("click2");
     $("#Liczba-Paneli").val(amountOfPanels + 2);
