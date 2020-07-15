@@ -4,9 +4,8 @@
 $("input").on("change", function() {
   declareCalculation();
 });
-$(function() {
-  declareCalculation();
-});
+
+declareCalculation();
 
 function declareCalculation() {
   /* priceGrow */
