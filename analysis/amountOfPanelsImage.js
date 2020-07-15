@@ -1,9 +1,6 @@
 // Declaring slide image for change of amount of panels
 
-var amountOfPanels = $("#Liczba-Paneli").val();
-console.log("amount of panels: " + amountOfPanels);
-amountOfPanels = parseInt(amountOfPanels);
-console.log("amount of panels 2: " + amountOfPanels);
+var amountOfPanels = 0;
 
 // Manual change of Amount of Panels Input
 $("#Liczba-Paneli").on("change", function() {
@@ -12,6 +9,10 @@ $("#Liczba-Paneli").on("change", function() {
 
 // Click in button Plus
 $("#more-panels").on("click", function() {
+  var amountOfPanels = $("#Liczba-Paneli").val();
+  console.log("amount of panels: " + amountOfPanels);
+  amountOfPanels = parseInt(amountOfPanels);
+  console.log("amount of panels 2: " + amountOfPanels);
   console.log("click");
   console.log(amountOfPanels);
   if (amountOfPanels < 60) {
@@ -26,6 +27,10 @@ $("#more-panels").on("click", function() {
 
 // Click in button Minus
 $("#less-panels").on("click", function() {
+  var amountOfPanels = $("#Liczba-Paneli").val();
+  console.log("amount of panels: " + amountOfPanels);
+  amountOfPanels = parseInt(amountOfPanels);
+  console.log("amount of panels 2: " + amountOfPanels);
   if (amountOfPanels > 10) {
     $("#Liczba-Paneli").val(amountOfPanels - 2);
     clientSession.st_numberOfPanels = amountOfPanels;
