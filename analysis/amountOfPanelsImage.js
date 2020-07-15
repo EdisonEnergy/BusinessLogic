@@ -1,5 +1,4 @@
 // Declaring slide image for change of amount of panels
-$("#montaz-wrap").hide();
 
 var amountOfPanels = $("#Liczba-Paneli").val();
 amountOfPanels = parseInt(amountOfPanels);
@@ -11,11 +10,14 @@ $("#Liczba-Paneli").on("change", function() {
 
 // Click in button Plus
 $("#more-panels").on("click", function() {
+  console.log("click");
   if (amountOfPanels < 60) {
+    console.log("click2");
     $("#Liczba-Paneli").val(amountOfPanels + 2);
     clientSession.st_numberOfPanels = amountOfPanels;
     updateState(); // Firebase State Update
     imageAmountOfPanels(amountOfPanels);
+    console.log("click3");
   }
 });
 

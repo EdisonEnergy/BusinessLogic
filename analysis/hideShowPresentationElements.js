@@ -1,6 +1,8 @@
 /* Function which is resposible for visual aspect of presentation */
 hideShowPresentationElements();
 function hideShowPresentationElements() {
+  $("#montaz-wrap").hide();
+
   var EnergyGrowYesNo = $("input[name='EnergyGrowYesNo']:checked").val();
   if (EnergyGrowYesNo == 1) {
     $("#EnergyGrowSlide").show();
