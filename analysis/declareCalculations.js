@@ -18,7 +18,9 @@ function declareCalculation() {
   energyGrow = energyGrow / 100;
 
   var amountOfPanels = $("#Liczba-Paneli").val();
+  console.log("amount of panels: " + amountOfPanels);
   amountOfPanels = parseInt(amountOfPanels);
+  console.log("amount of panels 2: " + amountOfPanels);
 
   /* supplierValue */
   var energySupplier = $("input[name='EnergySupplier']:checked").val();
