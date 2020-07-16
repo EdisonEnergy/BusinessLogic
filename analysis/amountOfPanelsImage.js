@@ -1,6 +1,7 @@
 // Declaring slide image for change of amount of panels
 
-var amountOfPanels = 0;
+var amountOfPanels = $("#Liczba-Paneli").val();
+imageAmountOfPanels(amountOfPanels);
 
 // Manual change of Amount of Panels Input
 $("#Liczba-Paneli").on("change", function() {
@@ -12,10 +13,12 @@ $("#more-panels").on("click", function() {
   var amountOfPanels = $("#Liczba-Paneli").val();
   amountOfPanels = parseInt(amountOfPanels);
   if (amountOfPanels < 60) {
-    $("#Liczba-Paneli").val(amountOfPanels + 2);
+    amountOfPanels = amountOfPanels + 2;
+    $("#Liczba-Paneli").val(amountOfPanels);
     clientSession.st_numberOfPanels = amountOfPanels;
     updateState(); // Firebase State Update
     imageAmountOfPanels(amountOfPanels);
+    declareCalculation();
   }
 });
 
@@ -24,10 +27,12 @@ $("#less-panels").on("click", function() {
   var amountOfPanels = $("#Liczba-Paneli").val();
   amountOfPanels = parseInt(amountOfPanels);
   if (amountOfPanels > 10) {
-    $("#Liczba-Paneli").val(amountOfPanels - 2);
+    amountOfPanels = amountOfPanels - 2;
+    $("#Liczba-Paneli").val(amountOfPanels);
     clientSession.st_numberOfPanels = amountOfPanels;
     updateState(); // Firebase State Update
     imageAmountOfPanels(amountOfPanels);
+    declareCalculation();
   }
 });
 

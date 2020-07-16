@@ -15,6 +15,9 @@ function calculatePrice(
   yourEnergyProgram,
   reliefPercentage
 ) {
+  priceGrow = priceGrow / 100;
+  energyGrow = energyGrow / 100;
+
   var yearlyEnergyCostNow = supplierValue * powerUse;
   var yearlyEnergyCostAfter25Years = Math.pow(1 + priceGrow, 25);
   yearlyEnergyCostAfter25Years =
@@ -40,8 +43,6 @@ function calculatePrice(
   var powerRequired = 3000; // Moc wymagana
   var power = modulePower * amountOfPanels; // Moc [W]
 
-  console.log("power: " + power);
-
   var powerReserve = powerRequired - power; // Zapas
 
   var powerKw = power / 1000; // Moc [kW]
@@ -56,10 +57,10 @@ function calculatePrice(
     setPriceNettoBasic = powerKw * assemblyCostPerKwNet30kW;
   }
 
-  var insurancePrice,
-    monitoringPrice,
-    warrantyPrice,
-    fullBlackPrice = 0;
+  var insurancePrice = 0;
+  var monitoringPrice = 0;
+  var warrantyPrice = 0;
+  var fullBlackPrice = 0;
 
   if (insurance == true) {
     insurancePrice = setPriceNettoBasic * insurancePercantageAdditionalCost;
@@ -74,8 +75,13 @@ function calculatePrice(
   }
 
   if (fullBlack == true) {
-    fullBlackPrice = setPriceNettoBasic * fullBlackPercantageAdditionalCost;
+    fullBlackPrice = amountOfPanels * fullBlackPercantageAdditionalCost;
   }
+
+  console.log("ins" + insurancePrice);
+  console.log("mon" + monitoringPrice);
+  console.log("war" + warrantyPrice);
+  console.log("ful" + fullBlackPrice);
 
   var setPriceNettoWithExtraAdditions =
     setPriceNettoBasic +
@@ -132,9 +138,13 @@ function calculatePrice(
 
   /* Function results */
 
-  $("#value_per_month_now").text(yearlyEnergyCostNow.toFixed(0));
-  $("#value_per_month").text(yearlyEnergyCostAfter25Years.toFixed(0));
-  $("#total-cost").text(totalEnergyCostFor25Years.toFixed(0));
+  $("#value_per_month_now").text(
+    decimalSeparator(yearlyEnergyCostNow.toFixed(0))
+  );
+  $("#value_per_month").text(
+    decimalSeparator(yearlyEnergyCostAfter25Years.toFixed(0))
+  );
+  $("#total-cost").text(decimalSeparator(totalEnergyCostFor25Years.toFixed(0)));
 
   $("#Moc-instalacji").val(powerKw); // Moc [kW]
   $("#redukcja").text(reductionCO2); // Redukcja CO2
@@ -144,18 +154,32 @@ function calculatePrice(
 
   $("#Produkcja-roczna").val(yearlyEnergyProduction); // Produkcja roczna [kWh]
 
-  $("#cena-gotowka").text(cashPriceVat8.toFixed(0));
+  $("#cena-gotowka").text(decimalSeparator(cashPriceVat8.toFixed(0)));
 
-  $("#moj-prad").text(yourEnergyProgramValue);
+  $("#moj-prad").text(decimalSeparator(yourEnergyProgramValue));
 
   $("#ulga").text(relief);
   $("#ulga_plan").text(relief);
 
-  $("#twoj-wklad").text(yourContribution);
+  $("#twoj-wklad").text(yourContribution.toFixed(0));
 
   $("#oszczednosci").text(savings.toFixed(0));
+
+  $("#Cena-w-Planie-Edison").val(edisonPlanVat8.toFixed(0));
 
   $("#cena_plan").text(edisonPlanVat8.toFixed(0));
   $("#umowa_rata").val(edisonPlanVat8.toFixed(0));
   $("#Oplata-montazowa").val(assemblyFeeGross8);
+
+  function decimalSeparator(nStr) {
+    nStr += "";
+    var x = nStr.split(".");
+    var x1 = x[0];
+    var x2 = x.length > 1 ? "." + x[1] : "";
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+      x1 = x1.replace(rgx, "$1" + " " + "$2");
+    }
+    return x1 + x2;
+  }
 }

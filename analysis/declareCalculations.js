@@ -1,28 +1,30 @@
 /* Function which is resposible for finding values for calculations */
 
 // Declaration for every input change and on application load
-$("input").on("change", function() {
-  declareCalculation();
-});
 
-declareCalculation();
+// $(document).ready(function() {
+//   //console.log("::~> (M) OBJ:" + JSON.stringify(clientSession));
+//   //declareCalculation();
+// });
+
+// $("input").on("change", function() {
+//   console.log("::~> (M)" + $(this).attr("id"));
+//   console.log("::~> (M) Insurance State:" + clientSession.st_insurance);
+//   updateState();
+//   //declareCalculation();
+// });
 
 function declareCalculation() {
-  /* priceGrow */
-  var priceGrow = $("#PriceGrow").val();
-  priceGrow = priceGrow / 100;
+  console.log("::~> (M) Insurance State:" + clientSession.st_insurance);
 
-  /* energyGrow */
-  var energyGrow = $("#EnergyGrow").val();
-  energyGrow = energyGrow / 100;
-
-  var amountOfPanels = $("#Liczba-Paneli").val();
-  console.log("amount of panels: " + amountOfPanels);
-  amountOfPanels = parseInt(amountOfPanels);
-  console.log("amount of panels 2: " + amountOfPanels);
+  var priceGrow = clientSession.st_priceGrow;
+  var energyGrow = clientSession.st_energyGrow;
+  var amountOfPanels = clientSession.st_numberOfPanels;
 
   /* supplierValue */
-  var energySupplier = $("input[name='EnergySupplier']:checked").val();
+
+  //var energySupplier = $("input[name='EnergySupplier']:checked").val();
+  var energySupplier = clientSession.st_energySupplier;
   var supplierValue = 0.58;
   if (energySupplier == "PGE") {
     supplierValue = 0.58;
@@ -36,16 +38,15 @@ function declareCalculation() {
     supplierValue = 0.52;
   }
 
-  var modulePower = 0;
-  modulePower = $("input[name='Modul']:checked").val();
+  var modulePower = clientSession.st_module;
 
-  var insurance = $("input[name='Ubezpieczenie']:checked").val();
-  var warranty = $("input[name='Gwarancja']:checked").val();
-  var monitoring = $("input[name='Monitoring']:checked").val();
-  var fullBlack = $("input[name='FullBlack']:checked").val();
+  var insurance = clientSession.st_insurance;
+  var warranty = clientSession.st_warranty;
+  var monitoring = clientSession.st_monitoring;
+  var fullBlack = clientSession.st_blackPanels;
 
   /* powerUse */
-  var powerUse = $("#PowerUse").val(); // Zużycie prądu
+  var powerUse = clientSession.st_powerUse; // Zużycie prądu
 
   var roofSide = $("input[name='StronaDachu']:checked").val(); // Strona Dachu
 
@@ -71,4 +72,21 @@ function declareCalculation() {
     yourEnergyProgram,
     reliefPercentage
   );
+}
+
+// $("input[name='Modul']").on("change", function() {
+//   countNumberOfPanels();
+//   console.log("start counting");
+// });
+
+function countNumberOfPanels() {
+  var powerUse = clientSession.st_powerUse;
+  var moduleAmount = clientSession.st_module;
+  var numberOfPanels = 0;
+  while (numberOfPanels * moduleAmount < powerUse) {
+    numberOfPanels++;
+  }
+  console.log("numberOfPanels: " + numberOfPanels);
+  clientSession.st_numberOfPanels = numberOfPanels;
+  updateState();
 }

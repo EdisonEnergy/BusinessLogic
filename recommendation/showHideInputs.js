@@ -1,3 +1,5 @@
+// Code responsible for show/hide recomendation inputs
+
 $("#recommendation-2").hide();
 $("#recommendation-3").hide();
 $("#recommendation-4").hide();

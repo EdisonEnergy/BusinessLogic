@@ -1,15 +1,17 @@
 /* Function which is resposible for visual aspect of presentation */
-hideShowPresentationElements();
+
 function hideShowPresentationElements() {
   $("#montaz-wrap").hide();
 
-  var EnergyGrowYesNo = $("input[name='EnergyGrowYesNo']:checked").val();
+  var EnergyGrowYesNo = clientSession.st_energyGrowYesNo;
   if (EnergyGrowYesNo == 1) {
     $("#EnergyGrowSlide").show();
     $("#EnergyGrowYesNo").hide();
+  } else {
+    $("#EnergyGrowSlide").hide();
   }
 
-  var Forma = $("input[name='Forma']:checked").val();
+  var Forma = clientSession.st_paymentMethod;
 
   /* Hide/Show comparison slide (red one) */
   if (Forma == "plan") {
